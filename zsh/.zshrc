@@ -15,6 +15,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light olets/zsh-transient-prompt
 
 # Add in snippets
 zinit snippet OMZL::git.zsh
@@ -31,6 +32,15 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
+# Prompt
+# PS1='%F{blue}%B%~%b%f %F{green}❯%f '
+eval "$(starship init zsh)"
+TRANSIENT_PROMPT_PROMPT='$(starship prompt --terminal-width="$COLUMNS" --keymap="${KEYMAP:-}" --status="$STARSHIP_CMD_STATUS" --pipestatus="${STARSHIP_PIPE_STATUS[*]}" --cmd-duration="${STARSHIP_DURATION:-}" --jobs="$STARSHIP_JOBS_COUNT")'
+TRANSIENT_PROMPT_RPROMPT='$(starship prompt --right --terminal-width="$COLUMNS" --keymap="${KEYMAP:-}" --status="$STARSHIP_CMD_STATUS" --pipestatus="${STARSHIP_PIPE_STATUS[*]}" --cmd-duration="${STARSHIP_DURATION:-}" --jobs="$STARSHIP_JOBS_COUNT")'
+TRANSIENT_PROMPT_TRANSIENT_PROMPT='$(starship module character)'
+
+(( $+commands[fastfetch] )) && fastfetch
+
 # Keybindings
 bindkey -e
 bindkey '^p' history-search-backward
@@ -38,8 +48,8 @@ bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 
 # History
-HISTSIZE=5000
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -57,15 +67,11 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-export PATH=$PATH:~/.local/bin:~/.local/go/bin
-export XDG_PICTURES_DIR=~/Pictures
-
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
-
-(( $+commands[fastfetch] )) && fastfetch
-
-# General
+# Aliases
+alias ls='ls --color'
+alias ll='ls -l'
 alias la='ls -la'
+
 alias vim='nvim'
 alias suv='sudo nvim'
 
@@ -81,3 +87,6 @@ alias upboot='sudo dnf offline-upgrade reboot'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+precmd () { print -Pn "\e]2;%-3~\a"; }
+
