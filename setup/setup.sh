@@ -13,3 +13,5 @@ sudo systemctl stop packagekit-offline-update.service
 sudo systemctl mask packgekit-offline-update.service
 sudo dnf remove PackageKit plasma-discover
 flatpak install flathub io.github.kolunmi.Bazaar
+
+sudo dnf remove kmahjongg kmines kpat
