@@ -5,9 +5,11 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 
 sudo dnf copr enable atim/starship
 sudo dnf install fastfetch fzf neovim starship stow zoxide zsh
-sudo dnf install firefox ptyxis
+#sudo dnf install firefox ptyxis
 
-sudo systemctl disable packagekit
-sudo systemctl stop packagekit
-sudo dnf remove PackageKit discover
+systemctl stop packagekit.service
+systemctl mask packagekit.service
+systemctl stop packagekit-offline-update.service
+systemctl mask packgekit-offline-update.service
+sudo dnf remove PackageKit plasma-discover
 flatpak install flathub io.github.kolunmi.Bazaar
