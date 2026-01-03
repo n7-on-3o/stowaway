@@ -1,0 +1,36 @@
+ls
+ls .config/
+cd stowaway/
+ls
+mkdir fonts/.local/share/fonts
+cd fonts/.local/share/fonts/
+ls
+cp ~/.local/share/fonts/* .
+ls
+cd ..
+ls
+cd .local/share/
+rm -rf fonts
+stow fonts
+ls
+git status
+cd
+sudo dnf copr enable atim/starship
+sudo dnf install starship
+config nu
+cd .config/nushell/
+;s
+ls
+nano starship.nu
+config nu
+ls
+cd stowaway/
+cd
+cd .config/nushell/
+nano starship.nu
+nano env.nu
+ls
+pwd
+cd stowaway/
+ls
+git status
