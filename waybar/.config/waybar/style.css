@@ -1,0 +1,108 @@
+@import "colors.css";
+
+* {
+    font-family: "JetBrains Mono", "Noto Sans JP", "Symbols Nerd Font Mono", sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+}
+
+window#waybar {
+    background-color: alpha(@surface, 0.4); 
+    border-bottom: 1px solid alpha(@outline, 0.4);
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* Individual Module Spacing */
+#workspaces, #window, #clock, #hardware, #connections, #scrollables, #battery, #tray {
+    padding: 0 15px;
+}
+
+/*Left*/
+#workspaces, #window {
+	color: @primary
+}
+
+/*Center*/
+#clock {
+    color: @primary;
+    /*background-color: alpha(@surface, 0.4);
+    border-radius: 12px;*/
+    padding: 6px 10px;
+    margin: 4px;
+}
+
+/*Right*/
+#battery, #tray {
+	color: @primary
+}
+
+
+/* Workspace styling for Niri */
+#workspaces button {
+    padding: 0 4px;
+    color: @on_surface;
+    opacity: 0.5;
+}
+
+#workspaces button.focused {
+    color: @primary;
+    opacity: 1;
+}
+
+#workspaces button.urgent {
+    color: @error;
+}
+
+#window {
+    color: @primary;
+}
+
+/* ... previous CSS ... */
+
+/* The 'drawer' styling */
+#hardware, #connections, #scrollables {
+    /*background-color: alpha(@surface, 0.4);*/
+    border-radius: 10px;
+    padding: 0 5px;
+    margin: 4px;
+    transition: background-color 0.3s;
+}
+
+#cpu, #network, #pulseaudio {
+    padding: 0 8px;
+    color: @primary;
+}
+
+#memory, #disk, #bluetooth, #backlight {
+    padding: 0 8px;
+    color: @tertiary;
+}
+
+/* Add a hover effect to the whole group to make it feel interactive */
+#hardware:hover, #connections:hover, #scrollables:hover {
+    background-color: alpha(@surface, 0.4);
+    border: 1px solid alpha(@primary, 0.4);
+}
+
+#bluetooth.disconnected {
+    color: @error;
+}
+
+#pulseaudio.muted {
+    color: @error;
+}
+
+#battery.charging {
+    color: @primary;
+}
+
+tooltip {
+    background: alpha(@primary_container, 0.6);
+    border: 1px solid alpha(@outline, 0.6);
+}
+
+tooltip label {
+    color: @on_primary_container;
+}

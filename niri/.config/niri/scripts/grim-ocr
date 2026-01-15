@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Get Matugen Primary color for the selection box
+PRIMARY=$(grep '@define-color primary' ~/.config/waybar/colors.css | awk '{print $3}' | sed 's/;//')
+
+# 1. Capture area 2. Extract text with Tesseract 3. Copy to clipboard
+# We use '-' to pipe images through the stdout/stdin chain without saving files
+TEXT=$(grim -g "$(slurp -b "#00000044" -c "$PRIMARY" -s "#00000000")" - | tesseract stdin stdout -l eng 2>/dev/null)
+
+if [ ! -z "$TEXT" ]; then
+    echo "$TEXT" | wl-copy
+    notify-send "OCR Successful" "Text copied to clipboard" -i "edit-paste"
+else
+    notify-send "OCR Failed" "No text detected in selection" -i "error"
+fi

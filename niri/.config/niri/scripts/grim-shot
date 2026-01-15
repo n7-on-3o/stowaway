@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+SAVE_DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$SAVE_DIR"
+
+# Get the Primary color from Matugen for the Slurp box
+PRIMARY=$(grep '@define-color primary' ~/.config/waybar/colors.css | awk '{print $3}' | sed 's/;//')
+
+if [ "$1" == "area" ]; then
+    # Capture area and send to swappy
+    grim -g "$(slurp -b "#00000044" -c "$PRIMARY" -s "#00000000")" - | swappy -f -
+else
+    # Capture full screen and send to swappy
+    grim - | swappy -f -
+fi

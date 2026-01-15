@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Path to your wallpaper folder
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+
+# Select a random wallpaper
+WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+# Check if swww is running, if not, start it
+if ! pgrep -x "swww-daemon" > /dev/null; then
+    swww-daemon &
+    sleep 0.5
+fi
+
+matugen image "$WALLPAPER"
+
+# 3. Optional: Send a notification
+notify-send "Theme Updated" "Colors extracted from $(basename "$WALLPAPER")" -i "$WALLPAPER"

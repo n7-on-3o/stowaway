@@ -1,0 +1,41 @@
+[config]
+
+# config_directory/config.toml
+[config.wallpaper]
+command = "swww"
+arguments = ["img", "--transition-type", "any"]
+set = true
+# pre_hook = ""
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.config/waybar/colors.css'
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.fuzzel]
+input_path = '~/.config/matugen/templates/fuzzel.ini'
+output_path = '~/.config/fuzzel/fuzzel.ini'
+
+[templates.mako]
+input_path = '~/.config/matugen/templates/mako.conf'
+output_path = '~/.config/mako/config'
+post_hook = 'makoctl reload'
+
+[templates.niri]
+input_path = '~/.config/matugen/templates/niri-colors.kdl'
+output_path = '~/.config/niri/colors.kdl'
+# Niri usually picks up changes to included files automatically
+
+[templates.hyprlock]
+input_path = '~/.config/matugen/templates/hyprlock.conf'
+output_path = '~/.config/hypr/hyprlock.conf'
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'pgrep -x kitty >/dev/null && pkill -SIGUSR1 kitty'
+
+[templates.micro]
+input_path = '~/.config/matugen/templates/micro-colors.yaml'
+output_path = '~/.config/micro/colorschemes/matugen.micro'
+

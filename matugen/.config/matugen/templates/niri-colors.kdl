@@ -1,0 +1,17 @@
+layout {
+    focus-ring {
+        width 2
+        // Active window uses the primary accent at 100% opacity
+        active-color "{{colors.primary.default.hex}}"
+        
+        // Inactive window uses a subtle outline at 40% opacity
+        inactive-color "{{colors.outline.default.hex}}66"
+    }
+
+    border {
+        off
+        width 1
+        active-color "{{colors.primary_container.default.hex}}99"
+        inactive-color "{{colors.surface.default.hex}}66"
+    }
+}
