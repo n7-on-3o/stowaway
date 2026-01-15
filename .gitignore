@@ -8,5 +8,5 @@ kitty/.config/kitty/colors.conf
 micro/.config/micro/backups/
 micro/.config/micro/buffers/
 micro/.config/micro/colorschemes/
-#niri/.config/niri/colors.kdl
+niri/.config/niri/colors.kdl
 waybar/.config/waybar/colors.css
