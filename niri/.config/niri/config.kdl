@@ -3,8 +3,6 @@
 // Check the wiki for a full description of the configuration:
 // https://yalter.github.io/niri/Configuration:-Introduction
 
-spawn-at-startup "sh" "-c" "matugen image $(find ~/Pictures/Wallpapers -type f | shuf -n 1)"
-
 input {
     keyboard {
         xkb {
@@ -67,6 +65,9 @@ spawn-at-startup "swww-daemon"
 spawn-at-startup "hypridle"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
+
+spawn-at-startup "~/.config/niri/scripts/theme-switch"
+
 
 hotkey-overlay {
     skip-at-startup
