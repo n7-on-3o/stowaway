@@ -1,0 +1,38 @@
+palette = "matugen"
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+\n$character"""
+
+[directory]
+style = "fg:m_accent_soft"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+style = "fg:m_accent_t_soft"
+format = '[ $symbol $branch ]($style)'
+
+[character]
+success_symbol = "[❯](bold m_accent_t_bright)"
+error_symbol = "[❯](bold m_error)"
+
+[palettes.matugen]
+m_accent_bright = "{{colors.primary_fixed.default.hex}}"
+m_accent_soft = "{{colors.primary.default.hex}}"
+m_accent_s_bright = "{{colors.secondary_fixed.default.hex}}"
+m_accent_s_soft = "{{colors.secondary.default.hex}}"
+m_accent_t_bright = "{{colors.tertiary_fixed.default.hex}}"
+m_accent_t_soft = "{{colors.tertiary.default.hex}}"
+
+m_error = "{{colors.error.default.hex}}"

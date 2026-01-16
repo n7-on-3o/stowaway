@@ -35,7 +35,10 @@ input_path = '~/.config/matugen/templates/kitty-colors.conf'
 output_path = '~/.config/kitty/colors.conf'
 post_hook = 'pgrep -x kitty >/dev/null && pkill -SIGUSR1 kitty'
 
+[templates.starship]
+input_path = '~/.config/matugen/templates/starship.toml'
+output_path = '~/.config/starship.toml'
+
 [templates.micro]
 input_path = '~/.config/matugen/templates/micro-colors.yaml'
 output_path = '~/.config/micro/colorschemes/matugen.micro'
-
