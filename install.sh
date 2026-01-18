@@ -4,6 +4,7 @@ sudo pacman -S \
     blueman \
     brightnessctl \
     btop \
+    cliphist \
     firefox \
     flatpak \
     fzf \

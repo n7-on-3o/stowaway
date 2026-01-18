@@ -42,3 +42,7 @@ output_path = '~/.config/starship.toml'
 [templates.micro]
 input_path = '~/.config/matugen/templates/micro-colors.yaml'
 output_path = '~/.config/micro/colorschemes/matugen.micro'
+
+[templates.fzf]
+input_path = '~/.config/matugen/templates/fzf-colors'
+output_path = '~/.config/fzf-colors'

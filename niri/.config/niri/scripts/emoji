@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+EMOJI_CACHE="$HOME/.cache/emoji-list.txt"
+
+if [[ ! -f "$EMOJI_CACHE" ]]; then
+    echo "Downloading emoji list..."
+    curl -s https://unicode.org/Public/emoji/15.1/emoji-test.txt | \
+    grep "fully-qualified" | \
+    sed 's/.*# //' | \
+    sed 's/ E[0-9.]* / /' > "$EMOJI_CACHE"
+fi
+
+mapfile -t FZF_OPTS < "$HOME/.config/fzf-colors"
+
+selection=$(cat "$EMOJI_CACHE" | fzf "${FZF_OPTS[@]}" \
+    --layout=reverse \
+    --header="Emoji Picker")
+
+if [ -n "$selection" ]; then
+    echo "$selection" | awk '{print $1}' | tr -d '\n' | wl-copy
+fi

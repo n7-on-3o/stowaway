@@ -85,7 +85,7 @@ window#waybar {
 
 #memory, #disk, #bluetooth, #backlight {
     padding: 0 8px;
-    color: @tertiary;
+    color: @primary_fixed;
 }
 
 /* Add a hover effect to the whole group to make it feel interactive */

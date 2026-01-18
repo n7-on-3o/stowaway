@@ -66,6 +66,9 @@ spawn-at-startup "hypridle"
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
 spawn-at-startup "~/.config/niri/scripts/theme-switch"
 
 
@@ -117,11 +120,11 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"pavucontrol|blueman-manager|nm-connection-editor"#
+    match app-id=r#"pavucontrol|blueman-manager|nm-connection-editor|kitty-popup"#
 
     open-floating true
     
-    default-column-width { proportion 0.2; }
+    default-column-width { proportion 0.3; }
     default-window-height { proportion 0.3; }
 }
 
@@ -147,9 +150,14 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+Alt+L hotkey-overlay-title="Lock the Screen: hyprlock" { spawn "hyprlock"; }
-    Mod+Alt+P hotkey-overlay-title="Power Menu" { spawn "~/.config/niri/scripts/power-menu"; }
+    Mod+P hotkey-overlay-title="Power Menu" { spawn "~/.config/niri/scripts/power-menu"; }
     Mod+Alt+Slash hotkey-overlay-title="Theme Switcher" { spawn "~/.config/niri/scripts/theme-switch";}
     Mod+Alt+N hotkey-overlay-title="Dismiss Notifications" { spawn "makoctl" "dismiss" "--all";}
+
+    Mod+Y { spawn "bash" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+
+    Mod+M { spawn "sh" "-c" "kitty --class kitty-popup -- ~/.config/niri/scripts/calc"; }
+    Mod+E { spawn "sh" "-c" "kitty --class kitty-popup -- ~/.config/niri/scripts/emoji"; }
 
     Mod+Shift+1 { spawn "~/.config/niri/scripts/grim-shot" "area"; }
     Mod+Shift+2 { spawn "~/.config/niri/scripts/grim-shot"; }
@@ -319,6 +327,4 @@ binds {
     Ctrl+Alt+Delete { quit; }
 
     Mod+Shift+P { power-off-monitors; }
-
-    Mod+Y { spawn "~/.local/scritps/clip-menu"; }
 }
