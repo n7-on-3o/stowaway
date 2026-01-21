@@ -129,7 +129,11 @@
         "format-icons": ["󰕿", "󰖀", "󰕾"]
     },
 
-    "backlight": { "format": "󰃠 <span color='#cccccc'>{percent}%</span>" },
+    "backlight": {
+        "format": "󰃠 <span color='#cccccc'>{percent}%</span>",
+        "tooltip-format": "󰃠 {percent}%"
+
+    },
 
     "battery": {
         "states": { "warning": 30, "critical": 15 },
