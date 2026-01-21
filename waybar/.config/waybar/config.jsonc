@@ -34,16 +34,16 @@
     },
     
     "niri/window": {
-        "format": "{title}",
+        "format": "<span color='#cccccc'>{title}</span>",
         "max-length": 50
     },
 
-     "clock": {
-         "interval": 60,
-         "format": " {:%I:%M %p}",
-         "format-alt": " {:%a %b %d}", 
-         "tooltip-format": "<tt><small>{calendar}</small></tt>",
-     },
+    "clock": {
+        "interval": 60,
+        "format": " <span color='#cccccc'>{:%I:%M %p}</span>",
+        "format-alt": " <span color='#cccccc'>{:%a %b %d}</span>", 
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
     
     "group/hardware": {
         "orientation": "horizontal",
@@ -55,23 +55,23 @@
         "drawer": {
             "transition-duration": 500,
             "transition-left-to-right": false
-        },
+        }
     },
 
     "cpu": {
         "interval": 5,
-        "format": " {usage}%",
+        "format": " <span color='#cccccc'>{usage}%</span>",
         "max-length": 10
     },
 
     "memory": {
         "interval": 5,
-        "format": "  {percentage}%"
+        "format": "  <span color='#cccccc'>{percentage}%</span>"
     },
 
     "disk": {
         "interval": 30,
-        "format": "󰋊 {percentage_used}%",
+        "format": "󰋊 <span color='#cccccc'>{percentage_used}%</span>",
         "path": "/",
         "tooltip-format": "{used} used out of {total} on {path}"
     },
@@ -90,25 +90,25 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "{icon} {signalStrength}%",
+        "format-wifi": "{icon} <span color='#cccccc'>{signalStrength}%</span>",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "format-ethernet": "󰈀",
         "format-disconnected": "󰖪",
         "format-disabled": "󰣽",
 
         "tooltip-format-wifi": "󰖩 {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟 IP: {ipaddr}",
-        "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}",            "tooltip-format-ethernet": "IP: {ipaddr}/{cidr}",
-            "on-click": "nm-connection-editor"
+        "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\nIP: {ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
     },
 
     "bluetooth": {
-        "format": " {status}",
-        "format-connected": " {device_alias}",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "format": " <span color='#cccccc'>{status}</span>",
+        "format-connected": " <span color='#cccccc'>{device_alias}</span>",
+        "format-connected-battery": " <span color='#cccccc'>{device_alias} {device_battery_percentage}%</span>",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "blueman-manager" // Or your preferred BT manager
+        "on-click": "blueman-manager"
     },
 
     "group/scrollables": {
@@ -123,18 +123,18 @@
         }
     },
 
-
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon} <span color='#cccccc'>{volume}%</span>",
         "format-muted": "󰝟",
         "format-icons": ["󰕿", "󰖀", "󰕾"]
     },
 
-    "backlight": { "format": "󰃠 {percent}%" },
+    "backlight": { "format": "󰃠 <span color='#cccccc'>{percent}%</span>" },
 
     "battery": {
         "states": { "warning": 30, "critical": 15 },
-        "format": "{icon} {capacity}%",
+        "format": "{icon} <span color='#cccccc'>{capacity}%</span>",
         "format-icons": ["", "", "", "", ""]
     }
 }
+
