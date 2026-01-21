@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+CACHE_DIR="$HOME/.cache"
+EMOJI_CACHE="$CACHE_DIR/emoji-list.txt"
+
+if [[ ! -f "$EMOJI_CACHE" ]]; then
+    curl -s https://unicode.org/Public/emoji/15.1/emoji-test.txt | \
+    grep "fully-qualified" | \
+    sed 's/.*# //' | \
+    sed 's/ E[0-9.]* / /' | \
+    grep -v "^ " > "$EMOJI_CACHE"
+fi
+
+cat "$EMOJI_CACHE" | fuzzel --dmenu --prompt "  " | awk '{print $1}' | tr -d '\n' | wl-copy

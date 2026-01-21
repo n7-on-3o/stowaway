@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Define the wallpaper directory
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers/"
+
+# Check if swww-daemon is running, if not, start it
+if ! pgrep -x "swww-daemon" > /dev/null; then
+    swww-daemon &
+    sleep 0.5 # Give it a moment to initialize
+fi
+
+# Pick a random image from the directory
+# Supports common extensions: jpg, jpeg, png, webp
+RANDOM_WP=$(find "$WALLPAPER_DIR" -type f | grep -E "\.(jpg|jpeg|png|webp)$" | shuf -n 1)
+
+# Apply the wallpaper using the 'any' transition
+if [ -n "$RANDOM_WP" ]; then
+    swww img "$RANDOM_WP" --transition-type any --transition-step 90 --transition-fps 60
+    WP_NAME=$(basename "$RANDOM_WP")
+    notify-send -i "$RANDOM_WP" "Wallpaper Changed" "Current: $WP_NAME"
+else
+    echo "No wallpapers found in $WALLPAPER_DIR"
+fi

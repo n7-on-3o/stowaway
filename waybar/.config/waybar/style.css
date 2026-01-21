@@ -1,0 +1,110 @@
+/* Basic Reset and Global Styling */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Inter", "Noto Sans CJK", "Symbols Nerd Font Mono", sans-serif;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(20, 20, 20, 0.7); /* Subtle transparency */
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* Common styling for all modules */
+#workspaces,
+#window,
+#clock,
+#cpu,
+#memory,
+#disk,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#battery,
+#tray {
+    padding: 0 10px;
+    margin: 4px 2px;
+    background-color: transparent;
+}
+
+/* Left Section: Niri Workspaces & Window Title */
+#workspaces button {
+    padding: 0 5px;
+    color: #888888;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#window {
+    font-weight: bold;
+    color: #cccccc;
+}
+
+/* Center Section: Clock */
+#clock {
+    font-weight: bold;
+}
+
+/* Right Section: Hardware & Groups */
+/* Drawers/Groups get a slightly darker background to distinguish them */
+#group-hardware,
+#group-connections,
+#group-scrollables {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-right: 5px;
+    padding: 0 5px;
+}
+
+/* Battery States */
+#battery.warning {
+    color: #ffcc00; /* Subtle warning yellow, keep monochromatic by using white if preferred */
+}
+
+#battery.critical {
+    color: #ff5555;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* System Tray */
+#tray {
+    margin-right: 8px;
+}
+
+/* Animations */
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Tooltip Styling */
+tooltip {
+    background: rgba(20, 20, 20, 0.8); /* Slightly more opaque than the bar for readability */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to define the edge */
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: #ffffff;
+    padding: 8px;
+}

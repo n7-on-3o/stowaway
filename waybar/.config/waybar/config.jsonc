@@ -1,0 +1,140 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+    "spacing": 0,
+
+    "modules-left": ["niri/workspaces", "niri/window"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "group/hardware",
+        "group/connections",
+        "group/scrollables",
+        "battery",
+        "tray"],
+        
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "default": "々"
+        }
+    },
+    
+    "niri/window": {
+        "format": "{title}",
+        "max-length": 50
+    },
+
+     "clock": {
+         "interval": 60,
+         "format": " {:%I:%M %p}",
+         "format-alt": " {:%a %b %d}", 
+         "tooltip-format": "<tt><small>{calendar}</small></tt>",
+     },
+    
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "disk"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": " {usage}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "  {percentage}%"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/",
+        "tooltip-format": "{used} used out of {total} on {path}"
+    },
+
+    "group/connections": {
+        "orientation": "horizontal",
+        "modules": [
+            "network",
+            "bluetooth"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        }
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": "{icon} {signalStrength}%",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "format-disabled": "󰣽",
+
+        "tooltip-format-wifi": "󰖩 {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟 IP: {ipaddr}",
+        "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}",            "tooltip-format-ethernet": "IP: {ipaddr}/{cidr}",
+            "on-click": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager" // Or your preferred BT manager
+    },
+
+    "group/scrollables": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "backlight"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        }
+    },
+
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": ["󰕿", "󰖀", "󰕾"]
+    },
+
+    "backlight": { "format": "󰃠 {percent}%" },
+
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    }
+}

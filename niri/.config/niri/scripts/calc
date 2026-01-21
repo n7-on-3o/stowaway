@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+mapfile -t FZF_OPTS < "$HOME/.config/fzf-colors"
+
+result=$(echo "" | fzf "${FZF_OPTS[@]}" \
+    --disabled --print-query \
+    --info=inline --header="Math (e.g. 2+2 or 50kg to lbs)" \
+    --preview="qalc -t {q}" --preview-window="up:1:wrap")
+
+if [ -n "$result" ]; then
+    qalc -t "$result" | wl-copy
+fi
