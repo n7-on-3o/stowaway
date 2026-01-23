@@ -81,6 +81,9 @@ spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 spawn-at-startup "~/.config/niri/scripts/rand-wall"
 
+//spawn-at-startup "firefox"
+//spawn-at-startup "kitty"
+
 hotkey-overlay {
     skip-at-startup
 }

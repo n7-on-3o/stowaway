@@ -7,12 +7,12 @@
     "margin-right": 0,
     "spacing": 0,
 
-    "modules-left": ["niri/workspaces", "niri/window"],
+    "modules-left": ["niri/workspaces"],
     "modules-center": ["clock"],
     "modules-right": [
-        "group/hardware",
-        "group/connections",
         "group/scrollables",
+        "group/connections",
+        "group/hardware",
         "battery",
         "tray"],
         
@@ -32,83 +32,12 @@
             "default": "々"
         }
     },
-    
-    "niri/window": {
-        "format": "<span color='#cccccc'>{title}</span>",
-        "max-length": 50
-    },
 
     "clock": {
         "interval": 60,
-        "format": " <span color='#cccccc'>{:%I:%M %p}</span>",
-        "format-alt": " <span color='#cccccc'>{:%a %b %d}</span>", 
+        "format": "  <span color='#cccccc'>{:%I:%M %p}</span>",
+        "format-alt": "  <span color='#cccccc'>{:%a %b %d}</span>", 
         "tooltip-format": "<tt><small>{calendar}</small></tt>"
-    },
-    
-    "group/hardware": {
-        "orientation": "horizontal",
-        "modules": [
-            "cpu",
-            "memory",
-            "disk"
-        ],
-        "drawer": {
-            "transition-duration": 500,
-            "transition-left-to-right": false
-        }
-    },
-
-    "cpu": {
-        "interval": 5,
-        "format": " <span color='#cccccc'>{usage}%</span>",
-        "max-length": 10
-    },
-
-    "memory": {
-        "interval": 5,
-        "format": "  <span color='#cccccc'>{percentage}%</span>"
-    },
-
-    "disk": {
-        "interval": 30,
-        "format": "󰋊 <span color='#cccccc'>{percentage_used}%</span>",
-        "path": "/",
-        "tooltip-format": "{used} used out of {total} on {path}"
-    },
-
-    "group/connections": {
-        "orientation": "horizontal",
-        "modules": [
-            "network",
-            "bluetooth"
-        ],
-        "drawer": {
-            "transition-duration": 500,
-            "transition-left-to-right": false
-        }
-    },
-
-    "network": {
-        "interval": 5,
-        "format-wifi": "{icon} <span color='#cccccc'>{signalStrength}%</span>",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰖪",
-        "format-disabled": "󰣽",
-
-        "tooltip-format-wifi": "󰖩 {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟 IP: {ipaddr}",
-        "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\nIP: {ipaddr}/{cidr}",
-        "on-click": "nm-connection-editor"
-    },
-
-    "bluetooth": {
-        "format": " <span color='#cccccc'>{status}</span>",
-        "format-connected": " <span color='#cccccc'>{device_alias}</span>",
-        "format-connected-battery": " <span color='#cccccc'>{device_alias} {device_battery_percentage}%</span>",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "blueman-manager"
     },
 
     "group/scrollables": {
@@ -130,15 +59,80 @@
     },
 
     "backlight": {
-        "format": "󰃠 <span color='#cccccc'>{percent}%</span>",
+        "format": "󰃠  <span color='#cccccc'>{percent}%</span>",
         "tooltip-format": "󰃠 {percent}%"
 
     },
 
+    "group/connections": {
+        "orientation": "horizontal",
+        "modules": [
+            "network",
+            "bluetooth"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        }
+    },
+
+    "network": {
+        "interval": 5,
+        "format-wifi": "{icon}  <span color='#cccccc'>{signalStrength}%</span>",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "format-disabled": "󰣽",
+
+        "tooltip-format-wifi": "󰖩 {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟 IP: {ipaddr}",
+        "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\nIP: {ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "bluetooth": {
+        "format": " <span color='#cccccc'>{status}</span>",
+        "format-connected": " <span color='#cccccc'>{device_alias}</span>",
+        "format-connected-battery": " <span color='#cccccc'>{device_alias} {device_battery_percentage}%</span>",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
+    },
+    
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "memory",
+            "disk"
+        ],
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        }
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "  <span color='#cccccc'>{usage}%</span>",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "  <span color='#cccccc'>{percentage}%</span>"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊  <span color='#cccccc'>{percentage_used}%</span>",
+        "path": "/",
+        "tooltip-format": "{used} used out of {total} on {path}"
+    },
+
     "battery": {
         "states": { "warning": 30, "critical": 15 },
-        "format": "{icon} <span color='#cccccc'>{capacity}%</span>",
+        "format": "{icon}  <span color='#cccccc'>{capacity}%</span>",
         "format-icons": ["", "", "", "", ""]
     }
 }
-

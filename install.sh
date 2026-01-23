@@ -2,11 +2,10 @@
 
 PACKAGES=(
     blueman brightnessctl btop cliphist firefox flatpak fzf 
-    gnome-themes-extra grim hypridle hyprlock inter-font kitty 
-    less libnotify libqalculate micro noto-fonts noto-fonts-cjk
+    gnome-themes-extra grim hypridle hyprlock kitty less 
+    libnotify libqalculate micro noto-fonts noto-fonts-cjk
     noto-fonts-emoji noto-fonts-extra slurp starship stow swappy
-    swww tesseract-data-eng ttc-iosevka-ss08 ttf-nerd-fonts-symbols
-    ttf-nerd-fonts-symbols-common ttf-nerd-fonts-symbols-mono
+    swww tesseract-data-eng ttc-iosevka-ss08 ttf-ubuntu-mono-nerd
     wl-clipboard xwayland-satellite zip zoxide zsh
 )
 
@@ -23,7 +22,7 @@ gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
 # Clean up and Stow
 rm -rf ~/.config/micro ~/.config/niri
-stow hypr kitty mako micro niri starship waybar zsh
+stow fuzzel hypr kitty mako micro niri starship swappy waybar zsh
 
 # Ensure Pictures directory exists before copying
 mkdir -p ~/Pictures/
