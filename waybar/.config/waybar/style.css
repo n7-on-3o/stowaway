@@ -11,12 +11,13 @@
 window#waybar {
     background: rgba(20, 20, 20, 0.7); /* Subtle transparency */
     color: #ffffff;
+    border-bottom: 1px solid #999999;
     transition-property: background-color;
     transition-duration: 0.5s;
 }
 
 /* Common styling for all modules */
-#workspaces,
+#workspaces button,
 #clock,
 #pulseaudio,
 #backlight,
@@ -30,11 +31,28 @@ window#waybar {
     padding: 0 10px;
     margin: 4px 2px;
     background-color: transparent;
+    border-radius: 8px;
+}
+
+/* Darken modules on hover */
+#workspaces button:hover,
+#clock:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#network:hover,
+#bluetooth:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#battery:hover,
+#tray:hover {
+    background-color: rgba(20, 20, 20, 0.3);
+    transition: background-color 0.5s ease;
 }
 
 #workspaces button {
     padding: 0 5px;
-    color: #888888;
+    color: #999999;
     font-size: 16px;
     border: 1px solid rgba(20, 20, 20, 0.0);
     background: transparent;
@@ -43,18 +61,14 @@ window#waybar {
 
 #workspaces button.active {
     color: #ffffff;
-    border: 1px solid #ffffff;
+    border: 1px solid #999999;
     border-bottom: 1px transparent;
     border-top: 1px transparent;
 }
 
-#workspaces button:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
 #clock {
-    border-left: 1px solid #888888;
-    border-right: 1px solid #888888;
+    border-left: 1px solid #999999;
+    border-right: 1px solid #999999;
 }
 
 #group-scrollables,
@@ -74,7 +88,7 @@ window#waybar {
 #battery,
 #tray {
     border: 1px transparent;
-    border-right: 1px solid #888888;
+    border-right: 1px solid #999999;
 }
 
 /* Battery States */
