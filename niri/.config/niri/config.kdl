@@ -37,7 +37,6 @@ input {
     position x=1280 y=0
 }
 
-include "colors.kdl"
 layout {
     gaps 8
     center-focused-column "never"

@@ -7,7 +7,7 @@
     "margin-right": 0,
     "spacing": 0,
 
-    "modules-left": ["niri/workspaces"],
+    "modules-left": ["custom/app-launcher", "niri/workspaces"],
     "modules-center": ["clock"],
     "modules-right": [
         "group/scrollables",
@@ -15,7 +15,13 @@
         "group/hardware",
         "battery",
         "tray"],
-        
+    
+    "custom/app-launcher": {
+    	"format": " ",
+    	"tooltip-format": "Application Launcher",
+    	"on-click": "fuzzel"
+    },
+    
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {

@@ -17,6 +17,7 @@ window#waybar {
 }
 
 /* Common styling for all modules */
+#custom-app-launcher,
 #workspaces button,
 #clock,
 #pulseaudio,
@@ -34,7 +35,12 @@ window#waybar {
     border-radius: 8px;
 }
 
+#custom-app-launcher {
+    color: #40bfff;
+}
+
 /* Darken modules on hover */
+#custom-app-launcher:hover,
 #workspaces button:hover,
 #clock:hover,
 #pulseaudio:hover,
