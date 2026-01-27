@@ -76,7 +76,7 @@
     },
 
    "custom/brightness": {
-      "format": "󰃠 <span color='#e0def4'>{text}%</span>",
+      "format": "󰃠  <span color='#e0def4'>{text}%</span>",
       "signal": 5,
       "exec": "~/.config/waybar/brightness-control.sh get",
       "on-scroll-up": "~/.config/waybar/brightness-control.sh up",
@@ -156,8 +156,8 @@
         "states": { "warning": 30, "critical": 15 },
         "format": "{icon}  <span color='#e0def4'>{capacity}%</span>",
         "format-icons": ["", "", "", "", ""],
-        "format-charging": " {capacity}%",
-        "format-plugged": "  {capacity}%"
+        "format-charging": " <span color='#e0def4'>{capacity}%</span>",
+        "format-plugged": "  <span color='#e0def4'>{capacity}%</span>"
     }
 }
 

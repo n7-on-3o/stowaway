@@ -1,132 +1,153 @@
-/* Global Bar Setup */
-window#waybar {
-    background-color: transparent; 
+/* Rosé Pine Palette Reference:
+   Base:    #191724 | Surface: #1f1d2e | Overlay: #26233a
+   Muted:   #6e6a86 | Subtle:  #908caa | Text:    #e0def4
+   Love:    #eb6f92 | Gold:    #f6c177 | Rose:    #ebbcba
+   Pine:    #31748f | Foam:    #9ccfd8 | Iris:    #c4a7e7
+*/
+
+/* Basic Reset and Global Styling */
+* {
+    border: none;
+    border-radius: 0;
     font-family: "UbuntuMono Nerd Font", "Noto Sans CJK", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: #e0def4;
+    min-height: 0;
 }
 
-label {
-    padding: 0px 4px;
-    margin: 0;
+window#waybar {
+    background: rgba(25, 23, 36, 0.70); /* Base with transparency */
+    color: #e0def4; /* Text */
+    border-bottom: 1px solid #403d52; /* Highlight Low */
+    transition-property: background-color;
+    transition-duration: 0.5s;
 }
 
-/* Base Island Styling */
+/* Common styling for all modules */
 #custom-app-launcher,
-#workspaces,
+#workspaces button,
 #clock,
+#pulseaudio,
+#backlight,
+#network,
+#bluetooth,
+#cpu,
+#memory,
+#disk,
 #battery,
-#tray,
-#scrollables,
-#connections,
-#hardware {
-    background-color: rgba(31, 29, 46, 0.7);
-    padding: 0px 4px;
-    margin: 1px 2px;
-    border-radius: 6px;
-    border: 1px solid rgba(64, 61, 82, 0.4);
-    min-height: 18px;
-    transition: all 0.2s ease-in-out;
-}
-
-/* --- Original Hover Effects Restored --- */
-#custom-app-launcher:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #9ccfd8;
-    box-shadow: 0 0 8px 0 rgba(156, 207, 216, 0.4);
-}
-
-#workspaces button:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #f6c177;
-    box-shadow: 0 0 8px 0 rgba(246, 193, 119, 0.4);
-}
-
-#clock:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #eb6f92;
-    box-shadow: 0 0 8px 0 rgba(235, 111, 146, 0.4);
-}
-
-#scrollables:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #ebbcba;
-    box-shadow: 0 0 8px 0 rgba(235, 188, 186, 0.4);
-}
-
-#connections:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #31748f;
-    box-shadow: 0 0 8px 0 rgba(49, 116, 143, 0.4);
-}
-
-#hardware:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #c4a7e7;
-    box-shadow: 0 0 8px 0 rgba(196, 167, 231, 0.4);
-}
-
-#battery:hover {
-    background-color: rgba(38, 35, 58, 0.9);
-    border: 1px solid #9ccfd8;
-    box-shadow: 0 0 8px 0 rgba(156, 207, 216, 0.4);
-}
-
-/* --- Tooltip Styling --- */
-tooltip {
-    background: rgba(25, 23, 36, 0.9);
-    border-radius: 8px;
-    border: 1px solid rgba(144, 140, 170, 0.8);
-}
-tooltip label { font-size: 14px; font-weight: bold; color: #e0def4; padding: 4px; }
-
-/* --- Colors & Neon Effects --- */
-#custom-app-launcher { color: #9ccfd8; }
-
-#workspaces button { color: #908caa; padding: 0px 4px; }
-#workspaces button.active { 
-    color: #f6c177;
-    text-shadow: 0 0 6px rgba(246, 193, 119, 0.8);
-}
-
-#clock { 
-    color: #eb6f92;
-    text-shadow: 0 0 4px rgba(235, 111, 146, 0.4);
-    padding: 0px 8px; /* Increased to match drawers and tray */
-}
-
-#pulseaudio, #backlight, #custom-brightness { color: #ebbcba; }
-#network, #bluetooth { color: #31748f; }
-#cpu, #memory, #disk { color: #c4a7e7; }
-
-/* --- Battery & Animation --- */
-#battery { color: #9ccfd8; }
-#battery.charging {
-    color: #9ccfd8;
-    animation: neon-breathe 2.5s infinite ease-in-out;
-}
-#battery.critical:not(.charging) {
-    background-color: #eb6f92;
-    color: #191724;
-}
-
-@keyframes neon-breathe {
-    0% { text-shadow: 0 0 2px rgba(156, 207, 216, 0.4); }
-    50% { text-shadow: 0 0 10px rgba(156, 207, 216, 1.0); }
-    100% { text-shadow: 0 0 2px rgba(156, 207, 216, 0.4); }
-}
-
-/* --- Internal Drawer & Tray Logic --- */
-#scrollables widget, #connections widget, #hardware widget {
-    padding: 0px 8px;
-    margin: 0;
-}
-
 #tray {
-    padding: 0px 8px;
+    padding: 0 10px;
+    margin: 4px 2px;
+    background-color: transparent;
+    border-radius: 8px;
 }
 
-#tray > widget > button {
-    padding: 0px 4px;
+#custom-app-launcher {
+    color: #9ccfd8; /* Foam */
+}
+
+/* Darken modules on hover */
+#custom-app-launcher:hover,
+#workspaces button:hover,
+#clock:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#custom-brightness,
+#network:hover,
+#bluetooth:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#battery:hover,
+#tray:hover {
+    background-color: #26233a; /* Overlay */
+    transition: background-color 0.5s ease;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #6e6a86; /* Muted */
+    border: 1px solid transparent;
+    background: transparent;
+    transition: all 0.5s ease;
+}
+
+#workspaces button.active {
+    color: #ebbcba; /* Rose */
+    border: 1px solid #ebbcba;
+    border-bottom: 1px transparent;
+    border-top: 1px transparent;
+}
+
+#clock {
+    color: #f6c177; /* Gold */
+    border-left: 1px solid #f6c177;
+    border-right: 1px solid #f6c177;
+}
+
+#group-scrollables,
+#group-connections,
+#group-hardware {
+    margin-right: 5px;
+    padding: 0 5px;
+}
+
+#pulseaudio,
+#backlight,
+#custom-brightness,
+#network,
+#bluetooth,
+#cpu,
+#memory,
+#disk,
+#battery,
+#tray {
+    border: 1px transparent;
+}
+
+/* Hardware Icons / Specific Colors */
+#pulseaudio, #backlight, #custom-brightness { color: #9ccfd8; border-right: 1px solid #9ccfd8; } /* Foam */
+#network, #bluetooth { color: #31748f; border-right: 1px solid #31748f; } /* Pine */
+#cpu, #disk, #memory { color: #c4a7e7; border-right: 1px solid #c4a7e7; } /* Iris */
+#battery { color: #9ccfd8; }
+
+/* Battery States */
+#battery.warning {
+    color: #f6c177; /* Gold */
+}
+
+#battery.critical {
+    color: #eb6f92; /* Love */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* System Tray */
+#tray {
+    margin-right: 8px;
+    border-right: 1px transparent;
+}
+
+/* Animations */
+@keyframes blink {
+    to {
+        background-color: #eb6f92; /* Love */
+        color: #191724; /* Base */
+    }
+}
+
+/* Tooltip Styling */
+tooltip {
+    background: rgba(31, 29, 46, 0.8); /* Surface */
+    border: 1px solid #403d52;
+    border-radius: 8px;
+}
+
+tooltip label {
+    font-size: 16;
+    color: #e0def4; /* Text */
+    padding: 8px;
 }
