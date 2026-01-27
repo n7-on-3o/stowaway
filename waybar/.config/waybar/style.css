@@ -60,13 +60,13 @@ window#waybar {
 #disk:hover,
 #battery:hover,
 #tray:hover {
-    background-color: #26233a; /* Overlay */
+    background-color: rgba(38, 35, 58, 0.6); /* Overlay */
     transition: background-color 0.5s ease;
 }
 
 #workspaces button {
     padding: 0 5px;
-    color: #6e6a86; /* Muted */
+    color: rgba(235, 188, 186, 0.4);
     border: 1px solid transparent;
     background: transparent;
     transition: all 0.5s ease;
