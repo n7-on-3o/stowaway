@@ -1,7 +1,6 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 45,
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
@@ -142,7 +141,7 @@
 
     "disk": {
         "interval": 30,
-        "format": "󰋊  <span color='#e0def4'>{percentage_used}%</span>",
+        "format": "󰋊 <span color='#e0def4'>{percentage_used}%</span>",
         "path": "/",
         "tooltip-format": "{used} used out of {total} on {path}"
     },
