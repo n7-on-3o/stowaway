@@ -79,10 +79,10 @@ tooltip {
     border-radius: 8px;
     border: 1px solid rgba(144, 140, 170, 0.8);
 }
-tooltip label { font-size: 12px; font-weight: bold; color: #e0def4; padding: 4px; }
+tooltip label { font-size: 14px; font-weight: bold; color: #e0def4; padding: 4px; }
 
 /* --- Colors & Neon Effects --- */
-#custom-app-launcher { color: #9ccfd8; font-size: 18px; margin-top: -1px; }
+#custom-app-launcher { color: #9ccfd8; }
 
 #workspaces button { color: #908caa; padding: 0px 4px; }
 #workspaces button.active { 
