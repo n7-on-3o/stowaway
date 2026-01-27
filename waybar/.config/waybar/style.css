@@ -80,7 +80,7 @@ window#waybar {
 
 /* --- Drawer Internal Logic --- */
 #scrollables widget, #connections widget, #hardware widget,
-#pulseaudio, #backlight, #network, #bluetooth, #cpu, #memory, #disk {
+#pulseaudio, #backlight, #custom-brightness, #network, #bluetooth, #cpu, #memory, #disk {
     background-color: transparent;
     border: none;
     margin: 0;
@@ -106,7 +106,7 @@ tooltip label {
 #workspaces button { color: #908caa; }
 #workspaces button.active { color: #f6c177; }
 #clock { color: #eb6f92; }
-#pulseaudio, #backlight { color: #ebbcba; }
+#pulseaudio, #backlight, #custom-brightness { color: #ebbcba; }
 #network, #bluetooth { color: #31748f; }
 #cpu, #memory, #disk { color: #c4a7e7; }
 #battery { color: #9ccfd8; }

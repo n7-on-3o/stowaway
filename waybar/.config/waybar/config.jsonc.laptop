@@ -70,15 +70,15 @@
     },
 
     "pulseaudio": {
-        "format": "{icon} <span color='#e0def4'>{volume}%</span>",
-        "format-muted": "󰝟",
-        "format-icons": ["󰕿", "󰖀", "󰕾"]
+        "format": "{icon}<span color='#e0def4'>{volume}%</span>",
+        "scroll-step": 5.0,
+        "format-muted": "󰝟 ",
+        "format-icons": ["󰕿 ", "󰖀 ", "󰕾 "]
     },
 
     "backlight": {
-        "format": "󰃠  <span color='#e0def4'>{percent}%</span>",
-        "tooltip-format": "󰃠  {percent}%"
-
+        "format": "󰃠 <span color='#e0def4'>{percent}%</span>",
+        "tooltip": false
     },
 
     "group/connections": {

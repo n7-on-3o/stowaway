@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 
+if [[ "$1" == "--desktop" ]] || [[ "$1" == "-d" ]]; then
+    DEVICE="desktop"
+fi
+
+if [[ "$1" == "--laptop" ]] || [[ "$1" == "-l" ]]; then
+    DEVICE="laptop"
+fi
+
+if [ -z $DEVICE ]; then
+    echo "Provide an argument: --desktop (-d) or --laptop (-l)"
+    exit 0
+fi
+
 PACKAGES=(
-    blueman brightnessctl btop cliphist firefox flatpak fzf 
-    gnome-themes-extra grim hypridle hyprlock kitty less 
+    blueman brightnessctl btop cliphist ddcutil firefox flatpak
+    fzf gnome-themes-extra grim hypridle hyprlock kitty less
     libnotify libqalculate micro noto-fonts noto-fonts-cjk
     noto-fonts-emoji noto-fonts-extra slurp starship stow swappy
     swww tesseract-data-eng ttc-iosevka-ss08 ttf-ubuntu-mono-nerd
@@ -23,6 +36,7 @@ gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 # Clean up and Stow
 rm -rf ~/.config/micro ~/.config/niri
 stow fuzzel hypr kitty mako micro niri starship swappy waybar zsh
+cp ./waybar/.config/waybar/config.jsonc.$DEVICE ./waybar/.config/waybar/config.jsonc
 
 # Ensure Pictures directory exists before copying
 mkdir -p ~/Pictures/
