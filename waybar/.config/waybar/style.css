@@ -72,7 +72,7 @@ window#waybar {
 
 /* --- Battery Charging Animation --- */
 #battery.charging {
-    color: #eb6f92; /* Love */
+    color: #9ccfd8; /* Foam */
     animation: breathe 2.5s infinite ease-in-out;
 }
 

@@ -150,7 +150,9 @@
     "battery": {
         "states": { "warning": 30, "critical": 15 },
         "format": "{icon}  <span color='#e0def4'>{capacity}%</span>",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "format-charging": " {capacity}%",
+        "format-plugged": "  {capacity}%"
     }
 }
 
