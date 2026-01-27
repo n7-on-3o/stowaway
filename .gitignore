@@ -1,6 +1,7 @@
 **/history.txt
 **/config.kdl.save
 **/kitty.conf.bak
+**/*.aside
 
 micro/.config/micro/backups/
 micro/.config/micro/buffers/

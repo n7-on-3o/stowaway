@@ -50,17 +50,13 @@ layout {
     default-column-width { proportion 0.5; }
 
     focus-ring {
-            width 2
-            active-color "rgba(255, 255, 255, 0.6)"
-            inactive-color "rgba(136, 136, 136, 0.3)"
-        }
+        width 3
+        active-gradient from="#c4a7e7" to="#9ccfd8"
+    }
     
-        border {
-            off
-            width 1
-            active-color "rgba(255, 255, 255, 0.6)"
-            inactive-color "rgba(255, 255, 255, 0.1)"
-        }
+    border {
+        off
+    }
 
     struts {
         // left 64

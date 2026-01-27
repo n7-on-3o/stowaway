@@ -1,29 +1,32 @@
 # Global Style
 font=UbuntuMono Nerd Font 12
-background-color=#141414b3
-text-color=#ffffff
+background-color=#191724b3
+text-color=#e0def4
 width=350
 height=150
 margin=10
 padding=15
 border-size=1
-border-color=#ffffff1a
-border-radius=8
-progress-color=over #ffffff33
+border-color=#31748f66
+border-radius=12
+progress-color=over #31748f33
 icons=1
 max-icon-size=48
 default-timeout=5000
 ignore-timeout=0
 
-# Monochromatic Urgency Overrides
+# Rosé Pine Urgency Overrides
 [urgency=low]
-border-color=#ffffff1a
+border-color=#908caa66
+text-color=#908caa
 
 [urgency=normal]
-border-color=#ffffff33
+border-color=#31748f
+text-color=#e0def4
 
 [urgency=critical]
-border-color=#ffffff
+border-color=#eb6f92
+text-color=#eb6f92
 default-timeout=0
 
 # Match your Waybar's grouping aesthetic

@@ -1,16 +1,29 @@
 [Default]
-# Save directory (matches your wallpaper logic)
+# Save directory
 save_dir=$HOME/Pictures/Screenshots
 save_filename_format=swappy-%Y%m%d-%H%M%S.png
 
 # Line and Text settings
-# Pure white (ffffff) to match your active workspace and focus ring
+# Thinner line for a more minimalist look
 line_size=2
 text_size=20
 text_font=UbuntuMono Nerd Font
 
 # Colors (Hex format)
-# White for annotations to pop against your dark background
+# Primary paint color: Rose (#ebbcba) for visibility without being harsh
+custom_color0=ebbcba
+# Secondary: Gold (#f6c177)
+custom_color1=f6c177
+# Accent: Pine (#31748f)
+custom_color2=31748f
+# Accent: Foam (#9ccfd8)
+custom_color3=9ccfd8
+# Accent: Iris (#c4a7e7)
+custom_color4=c4a7e7
+# Dark: Surface (#1f1d2e)
+custom_color5=1f1d2e
+
+# Default paint mode
 paint_mode=brush
 early_exit=false
 fill_shape=false

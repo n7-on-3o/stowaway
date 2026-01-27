@@ -1,0 +1,35 @@
+# Rosé Pine for Micro (Language Agnostic)
+# Official Palette: Base #191724 | Surface #1f1d2e | Highlight Med #403d52 | Text #e0def4
+
+# General
+color-link default "#e0def4,#191724"
+color-link comment "#6e6a86"
+
+# Universal Syntax
+color-link identifier "#9ccfd8"        # Foam
+color-link statement "#c4a7e7"         # Iris
+color-link symbol "#908caa"            # Subtle
+color-link preproc "#ebbcba"           # Rose
+color-link type "#9ccfd8"              # Foam
+color-link special "#c4a7e7"           # Iris
+color-link constant "#ebbcba"          # Rose
+color-link constant.string "#f6c177"   # Gold
+color-link constant.number "#f6c177"   # Gold
+
+# Kitty-Matched Selection & UI
+# Background #403d52 matches the Rose Pine 'Highlight Med' used in Kitty
+color-link selection "#e0def4,#403d52" 
+color-link cursor-line "#1f1d2e"
+color-link line-number "#6e6a86"
+color-link current-line-number "#ebbcba"
+
+# Dividers and Bars
+color-link statusline "#e0def4,#26233a"
+color-link tabbar "#e0def4,#26233a"
+color-link indent-char "#26233a"
+color-link gutter-error "#eb6f92"
+color-link gutter-warning "#f6c177"
+
+# Messages
+color-link error "#eb6f92"
+color-link todo "#f6c177"

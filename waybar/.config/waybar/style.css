@@ -1,138 +1,121 @@
-/* Basic Reset and Global Styling */
-* {
-    border: none;
-    border-radius: 0;
+/* Global Bar Setup */
+window#waybar {
+    background-color: transparent; 
     font-family: "UbuntuMono Nerd Font", "Noto Sans CJK", sans-serif;
     font-size: 18px;
     font-weight: bold;
-    min-height: 0;
+    color: #e0def4;
 }
 
-window#waybar {
-    background: rgba(20, 20, 20, 0.7); /* Subtle transparency */
-    color: #ffffff;
-    border-bottom: 1px solid #999999;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-}
-
-/* Common styling for all modules */
+/* Base Island Styling */
 #custom-app-launcher,
-#workspaces button,
+#workspaces,
 #clock,
-#pulseaudio,
-#backlight,
-#network,
-#bluetooth,
-#cpu,
-#memory,
-#disk,
 #battery,
-#tray {
-    padding: 0 10px;
-    margin: 4px 2px;
-    background-color: transparent;
-    border-radius: 8px;
-}
-
-#custom-app-launcher {
-    color: #40bfff;
-}
-
-/* Darken modules on hover */
-#custom-app-launcher:hover,
-#workspaces button:hover,
-#clock:hover,
-#pulseaudio:hover,
-#backlight:hover,
-#network:hover,
-#bluetooth:hover,
-#cpu:hover,
-#memory:hover,
-#disk:hover,
-#battery:hover,
-#tray:hover {
-    background-color: rgba(20, 20, 20, 0.3);
-    transition: background-color 0.5s ease;
+#tray,
+#scrollables,
+#connections,
+#hardware {
+    background-color: rgba(31, 29, 46, 0.7);
+    padding: 2px 15px;
+    margin: 5px 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(64, 61, 82, 0.6);
+    transition: all 0.2s ease-in-out;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    color: #999999;
-    font-size: 16px;
-    border: 1px solid rgba(20, 20, 20, 0.0);
-    background: transparent;
-    transition: all 0.5s ease;
+	padding: 2px 10px;
 }
 
-#workspaces button.active {
-    color: #ffffff;
-    border: 1px solid #999999;
-    border-bottom: 1px transparent;
-    border-top: 1px transparent;
+#custom-app-launcher:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #9ccfd8;
+    box-shadow: 0 0 12px 0 rgba(156, 207, 216, 0.4)
 }
 
-#clock {
-    border-left: 1px solid #999999;
-    border-right: 1px solid #999999;
+#workspaces button:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #f6c177;
+    box-shadow: 0 0 12px 0 rgba(246, 193, 119, 0.4);
 }
 
-#group-scrollables,
-#group-connections,
-#group-hardware {
-    margin-right: 5px;
-    padding: 0 5px;
+#clock:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #eb6f92;
+    box-shadow: 0 0 12px 0 rgba(235, 111, 146, 0.4);
 }
 
-#pulseaudio,
-#backlight,
-#network,
-#bluetooth,
-#cpu,
-#memory,
-#disk,
-#battery,
-#tray {
-    border: 1px transparent;
-    border-right: 1px solid #999999;
+#scrollables:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #ebbcba;
+    box-shadow: 0 0 12px 0 rgba(235, 188, 186, 0.4);
 }
 
-/* Battery States */
-#battery.warning {
-    color: #ffcc00;
+#connections:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #31748f;
+    box-shadow: 0 0 12px 0 rgba(49, 116, 143, 0.4);
 }
 
-#battery.critical {
-    color: #ff5555;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#hardware:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #c4a7e7;
+    box-shadow: 0 0 12px 0 rgba(196, 167, 231, 0.4);
 }
 
-/* System Tray */
-#tray {
-    margin-right: 8px;
-    border-right: 1px transparent;
+#battery:hover {
+    background-color: rgba(38, 35, 58, 0.9);
+    border: 1px solid #9ccfd8;
+    box-shadow: 0 0 12px 0 rgba(156, 207, 216, 0.4)
 }
 
-/* Animations */
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+/* --- Battery Charging Animation --- */
+#battery.charging {
+    color: #eb6f92; /* Love */
+    animation: breathe 2.5s infinite ease-in-out;
 }
 
-/* Tooltip Styling */
+@keyframes breathe {
+    0% { background-color: rgba(31, 29, 46, 0.7); box-shadow: 0 0 0px rgba(49, 116, 143, 0); }
+    50% { background-color: rgba(49, 116, 143, 0.2); box-shadow: 0 0 8px rgba(49, 116, 143, 0.3); }
+    100% { background-color: rgba(31, 29, 46, 0.7); box-shadow: 0 0 0px rgba(49, 116, 143, 0); }
+}
+
+/* --- Drawer Internal Logic --- */
+#scrollables widget, #connections widget, #hardware widget,
+#pulseaudio, #backlight, #network, #bluetooth, #cpu, #memory, #disk {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0 10px;
+}
+
+/* --- Tooltip Styling --- */
 tooltip {
-    background: rgba(20, 20, 20, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to define the edge */
-    border-radius: 8px;
+    background: rgba(25, 23, 36, 0.8); /* Base */
+    border-radius: 12px;
+    border: 1px solid rgba(144, 140, 170, 0.8); /* Subtle border */
 }
 
 tooltip label {
-    color: #ffffff;
-    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #e0def4; /* Text */
+    padding: 6px;
+}
+
+/* --- Base Colors --- */
+#custom-app-launcher { color: #9ccfd8; font-size: 22px; }
+#workspaces button { color: #908caa; }
+#workspaces button.active { color: #f6c177; }
+#clock { color: #eb6f92; }
+#pulseaudio, #backlight { color: #ebbcba; }
+#network, #bluetooth { color: #31748f; }
+#cpu, #memory, #disk { color: #c4a7e7; }
+#battery { color: #9ccfd8; }
+
+#battery.critical:not(.charging) {
+    background-color: #eb6f92;
+    color: #191724;
 }

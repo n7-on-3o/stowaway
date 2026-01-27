@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
+    "height": 48,
     "margin-top": 0,
     "margin-left": 0,
     "margin-right": 0,
@@ -41,9 +41,20 @@
 
     "clock": {
         "interval": 60,
-        "format": "  <span color='#cccccc'>{:%I:%M %p}</span>",
-        "format-alt": "  <span color='#cccccc'>{:%a %b %d}</span>", 
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+        "format": "  <span color='#e0def4'>{:%I:%M %p}</span>",
+        "format-alt": "  <span color='#e0def4'>{:%a %b %d}</span>", 
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ebbcba'><b>{}</b></span>",
+                "days": "<span color='#9ccfd8'><b>{}</b></span>",
+                "weekdays": "<span color='#f6c177'><b>{}</b></span>",
+                "today": "<span color='#eb6f92'><b><u>{}</u></b></span>"
+            },
+        },
     },
 
     "group/scrollables": {
@@ -59,14 +70,14 @@
     },
 
     "pulseaudio": {
-        "format": "{icon} <span color='#cccccc'>{volume}%</span>",
+        "format": "{icon} <span color='#e0def4'>{volume}%</span>",
         "format-muted": "󰝟",
         "format-icons": ["󰕿", "󰖀", "󰕾"]
     },
 
     "backlight": {
-        "format": "󰃠  <span color='#cccccc'>{percent}%</span>",
-        "tooltip-format": "󰃠 {percent}%"
+        "format": "󰃠  <span color='#e0def4'>{percent}%</span>",
+        "tooltip-format": "󰃠  {percent}%"
 
     },
 
@@ -84,21 +95,21 @@
 
     "network": {
         "interval": 5,
-        "format-wifi": "{icon}  <span color='#cccccc'>{signalStrength}%</span>",
+        "format-wifi": "{icon}  <span color='#e0def4'>{signalStrength}%</span>",
         "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
         "format-ethernet": "󰈀",
         "format-disconnected": "󰖪",
         "format-disabled": "󰣽",
 
-        "tooltip-format-wifi": "󰖩 {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟 IP: {ipaddr}",
+        "tooltip-format-wifi": "󰖩  {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟  IP: {ipaddr}",
         "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\nIP: {ipaddr}/{cidr}",
         "on-click": "nm-connection-editor"
     },
 
     "bluetooth": {
-        "format": " <span color='#cccccc'>{status}</span>",
-        "format-connected": " <span color='#cccccc'>{device_alias}</span>",
-        "format-connected-battery": " <span color='#cccccc'>{device_alias} {device_battery_percentage}%</span>",
+        "format": " <span color='#e0def4'>{status}</span>",
+        "format-connected": " <span color='#e0def4'>{device_alias}</span>",
+        "format-connected-battery": " <span color='#e0def4'>{device_alias} {device_battery_percentage}%</span>",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -120,25 +131,26 @@
 
     "cpu": {
         "interval": 5,
-        "format": "  <span color='#cccccc'>{usage}%</span>",
+        "format": "  <span color='#e0def4'>{usage}%</span>",
         "max-length": 10
     },
 
     "memory": {
         "interval": 5,
-        "format": "  <span color='#cccccc'>{percentage}%</span>"
+        "format": "  <span color='#e0def4'>{percentage}%</span>"
     },
 
     "disk": {
         "interval": 30,
-        "format": "󰋊  <span color='#cccccc'>{percentage_used}%</span>",
+        "format": "󰋊  <span color='#e0def4'>{percentage_used}%</span>",
         "path": "/",
         "tooltip-format": "{used} used out of {total} on {path}"
     },
 
     "battery": {
         "states": { "warning": 30, "critical": 15 },
-        "format": "{icon}  <span color='#cccccc'>{capacity}%</span>",
+        "format": "{icon}  <span color='#e0def4'>{capacity}%</span>",
         "format-icons": ["", "", "", "", ""]
     }
 }
+
