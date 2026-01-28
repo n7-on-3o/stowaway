@@ -29,6 +29,7 @@ window#waybar {
 #clock,
 #pulseaudio,
 #backlight,
+#custom-brightness,
 #network,
 #bluetooth,
 #cpu,
@@ -52,7 +53,7 @@ window#waybar {
 #clock:hover,
 #pulseaudio:hover,
 #backlight:hover,
-#custom-brightness,
+#custom-brightness:hover,
 #network:hover,
 #bluetooth:hover,
 #cpu:hover,
@@ -106,7 +107,9 @@ window#waybar {
 }
 
 /* Hardware Icons / Specific Colors */
-#pulseaudio, #backlight, #custom-brightness { color: #9ccfd8; border-right: 1px solid #9ccfd8; } /* Foam */
+#pulseaudio, #backlight, #custom-brightness {
+    color: #9ccfd8; border-right: 1px solid #9ccfd8; /* Foam */
+} 
 #network, #bluetooth { color: #31748f; border-right: 1px solid #31748f; } /* Pine */
 #cpu, #disk, #memory { color: #c4a7e7; border-right: 1px solid #c4a7e7; } /* Iris */
 #battery { color: #9ccfd8; }
