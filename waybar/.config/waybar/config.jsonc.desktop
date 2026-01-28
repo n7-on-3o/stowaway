@@ -106,8 +106,8 @@
         "format-disconnected": "󰖪",
         "format-disabled": "󰣽",
 
-        "tooltip-format-wifi": "󰖩  {essid}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\n󰩟  IP: {ipaddr}",
-        "tooltip-format-ethernet": "󰈀 {ifname}\n󰇚 Down: {bandwidthDownOctets}\n󰕒 Up: {bandwidthUpOctets}\nIP: {ipaddr}/{cidr}",
+        "tooltip-format-wifi": "󰖩  {essid}\n󰇚  Down: {bandwidthDownOctets}\n󰕒  Up: {bandwidthUpOctets}\n󰩠  IP: {ipaddr}",
+        "tooltip-format-ethernet": "󰈀  {ifname}\n󰇚  Down: {bandwidthDownOctets}\n󰕒  Up: {bandwidthUpOctets}\n󰩠  IP: {ipaddr}/{cidr}",
         "on-click": "nm-connection-editor"
     },
 
