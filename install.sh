@@ -19,12 +19,17 @@ PACKAGES=(
     libnotify libqalculate micro noto-fonts noto-fonts-cjk
     noto-fonts-emoji noto-fonts-extra slurp starship stow swappy
     swww tesseract-data-eng ttc-iosevka-ss08 ttf-ubuntu-mono-nerd
-    wl-clipboard xwayland-satellite zip zoxide zsh
+    ufw wl-clipboard xwayland-satellite zip zoxide zsh
 )
 
 # Use --needed to skip already installed packages
 # Use --noconfirm if you want it to run unattended
 sudo pacman -S --needed "${PACKAGES[@]}"
+
+# Setup Firewall
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw enable
 
 # Setup Flatpak
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo

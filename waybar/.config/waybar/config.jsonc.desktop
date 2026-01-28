@@ -76,7 +76,7 @@
     },
 
    "custom/brightness": {
-      "format": "󰃠  <span color='#e0def4'>{text}%</span>",
+      "format": "󰃝 <span color='#e0def4'>{text}%</span>",
       "signal": 5,
       "exec": "~/.config/waybar/brightness-control.sh get",
       "on-scroll-up": "~/.config/waybar/brightness-control.sh up",
