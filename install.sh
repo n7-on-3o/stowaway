@@ -40,7 +40,7 @@ gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 
 # Clean up and Stow
 rm -rf ~/.config/micro ~/.config/niri
-stow fuzzel hypr kitty mako micro niri starship swappy waybar zsh
+stow btop fuzzel hypr kitty mako micro niri starship swappy waybar zsh
 cp ./waybar/.config/waybar/config.jsonc.$DEVICE ./waybar/.config/waybar/config.jsonc
 
 # Ensure Pictures directory exists before copying
