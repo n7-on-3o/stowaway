@@ -1,7 +1,3 @@
-It sounds like you're setting up a robust rollback system for Arch Linux! I've converted your text into a clean, organized Markdown document. I've standardized the formatting, highlighted key file paths, and cleaned up the code blocks for better readability.
-
----
-
 # Setting Up Snapper and Limine Integration
 
 This guide outlines the steps to configure Btrfs snapshots with Limine bootloader integration on Arch Linux.
@@ -56,6 +52,23 @@ To ensure snapshots are bootable even if the root is read-only, you must add an 
 sudo limine-update
 
 ```
+## 3.1 Add OverlayFS to Initramfs (drakut)
+
+# 1. Add OverlayFS support to dracut
+echo 'add_dracutmodules+=" overlayfs "' | sudo tee /etc/dracut.conf.d/90-overlayfs.conf
+
+# 2. Update Limine kernel parameters (add to your limine.conf cmdline)
+# Manually add: rd.live.overlay.overlayfs=1
+
+# 3. Regenerate initramfs and update Limine
+if command -v limine-dracut &> /dev/null; then
+    sudo limine-dracut
+else
+    sudo dracut --force --regenerate-all
+    sudo limine-update
+fi
+
+
 
 ## 4. Configure Limine Snapshot Entries
 
