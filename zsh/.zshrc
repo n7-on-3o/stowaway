@@ -79,6 +79,7 @@ alias vim='nvim'
 alias suv='sudo nvim'
 
 alias mi='micro'
+alias smi='sudo micro'
 
 # Archy
 alias pacin='sudo pacman -S'

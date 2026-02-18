@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # KDE plasma
-sudo pacman -S --needed $(pacman -Sg plasma | awk '{print $2}' | grep -v 'sddm-kcm')
+pacman -Sgq plasma | grep -vE 'discover|sddm-kcm' | sudo pacman -S -
 sudo systemctl enable plasmalogin.service
 
 # kitty & co
