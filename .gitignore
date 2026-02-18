@@ -1,0 +1,8 @@
+**/history.txt
+**/config.kdl.save
+**/kitty.conf.bak
+**/*.aside
+
+waybar/.config/waybar/config.jsonc
+micro/.config/micro/backups/
+micro/.config/micro/buffers/
