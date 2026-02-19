@@ -4,6 +4,10 @@
 pacman -Sgq plasma | grep -vE 'discover|sddm-kcm' | sudo pacman -S -
 sudo systemctl enable plasmalogin.service
 
+if [[$1 = *"eos"]]; then
+    sudo pacman -S --needed sudo pacman -S --needed 
+fi
+
 # kitty & co
 sudo pacman -S --needed kitty micro starship zsh fzf zoxide stow
 
