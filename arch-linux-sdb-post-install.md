@@ -17,12 +17,10 @@ Install Arch with archinstall:
 ```bash
 sudo micro /etc/pacman.conf
 ````
-add these lines:
+uncommect Color and add these lines:
 ```
-Color
 ILoveCandy
 VerbosePkgLists
-ParallelDownloads=5
 ```
 ### 1.3. Cleanup package cache
 install pacman-contrib package
@@ -79,7 +77,7 @@ kernel_cmdline+=" rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-
 ```
 ### 2.3. Create kernel-install config
 ```
-sudo micro /etc/dracut.conf.d/10-luks.conf
+sudo micro /etc/kernel/install.conf
 ```
 add this content
 ```
@@ -90,7 +88,7 @@ initrd_generator=dracut
 ### 2.4. Add kernel-install hooks
 we need to replace two dracut (or mknintcpio) hooks with kernel-install ones
 ```bash
-micro /etc/pacman.d/hooks/60-kernel-remove.hook
+sudo micro /etc/pacman.d/hooks/60-kernel-remove.hook
 ```
 add this
 ```
@@ -107,7 +105,7 @@ NeedsTargets
 ```
 and
 ```bash
-micro /etc/pacman.d/hooks/90-kernel-install.hook 
+sudo micro /etc/pacman.d/hooks/90-kernel-install.hook
 ```
 add this
 ```
@@ -212,6 +210,16 @@ to something like
 ALLOW_USERS="<your user>"
 ALLOW_GROUPS="wheel"
 
+# sync users and groups from ALLOW_USERS and ALLOW_GROUPS to .snapshots
+# directory
+SYNC_ACL="no"
+
+
+# start comparing pre- and post-snapshot in background after creating
+# post-snapshot
+BACKGROUND_COMPARISON="yes"
+
+
 # run daily number cleanup
 NUMBER_CLEANUP="yes"
 
@@ -230,11 +238,18 @@ TIMELINE_CLEANUP="yes"
 # limits for timeline cleanup
 TIMELINE_MIN_AGE="1800"
 TIMELINE_LIMIT_HOURLY="5"
-TIMELINE_LIMIT_DAILY="7"
+TIMELINE_LIMIT_DAILY="2"
 TIMELINE_LIMIT_WEEKLY="0"
 TIMELINE_LIMIT_MONTHLY="0"
 TIMELINE_LIMIT_QUARTERLY="0"
 TIMELINE_LIMIT_YEARLY="0"
+
+
+# cleanup empty pre-post-pairs
+EMPTY_PRE_POST_CLEANUP="yes"
+
+# limits for empty pre-post-pair cleanup
+EMPTY_PRE_POST_MIN_AGE="1800"
 ```
 enable the cleanup timers
 ```bash
