@@ -192,10 +192,10 @@ sudo mount /.snapshots
 ### 3.3. Add systemd-boot support
 install systemd-boot-snapper-tools from github
 ```bash
-
-```
-edit /etc/defaultgit clone https://github.com/n7-on-3o/systemd-boot-snapper-tools.git
+git clone https://github.com/n7-on-3o/systemd-boot-snapper-tools.git
 cd systemd-boot-snapper-tools
+sudo make install
+```
 to test everything, create a snapshot
 ```bash
 sudo snapper -c root create -d "1st snapshot"
