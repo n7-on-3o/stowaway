@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # KDE plasma
-pacman -Sgq plasma | grep -vE 'discover|sddm-kcm' | sudo pacman -S -
+pacman -Sgq plasma | grep -vE 'discover|sddm-kcm' | sudo pacman -S --needed -
 sudo systemctl enable plasmalogin.service
 
 if [[$1 = *"eos"]]; then

@@ -71,9 +71,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 export EDITOR='micro'
 
 # Aliases
-alias ls='ls --color'
-alias ll='ls -l'
-alias la='ls -la'
+alias ll='ls -lh'
+alias la='ls -lah'
 
 alias vim='nvim'
 alias suv='sudo nvim'
