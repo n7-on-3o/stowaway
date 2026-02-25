@@ -59,7 +59,7 @@ uefi_splash_image="/usr/share/systemd/bootctl/splash-arch.bmp"
 compress="zstd"
 
 # Kernel Command Line
-kernel_cmdline+=" rd.luks.uuid=d2f6bb0d-f744-4f07-99f4-1d0f3a7f06c1 root=UUID=51a5006d-bd75-4e15-8ba7-56adba4fe872 rootfstype=btrfs rootflags=compress=zstd:3,subvol=@ rw splash quiet"
+kernel_cmdline+=" rd.luks.uuid=d2f6bb0d-f744-4f07-99f4-1d0f3a7f06c1 root=UUID=51a5006d-bd75-4e15-8ba7-56adba4fe872 rootfstype=btrfs rootflags=compress=zstd:3,subvol=@ rw splash quiet "
 ```
 ```bash
 lsblk -f #run this to find the uuids
@@ -100,9 +100,8 @@ Target = usr/lib/modules/*/pkgbase
 [Action]
 Description = Removing UKI and kernel entries via kernel-install...
 When = PreTransaction
-Exec = /usr/bin/bash -c "while read -r p; do V=$(basename $(dirname $p)); /usr/bin/kernel-install remove $V; done"
-NeedsTargets
-```
+Exec = /usr/bin/bash -c "while read -r p; do V=$(basename $(dirname \"$p\")); /usr/bin/kernel-install remove \"$V\"; done"
+NeedsTargets```
 and
 ```bash
 sudo micro /etc/pacman.d/hooks/90-kernel-install.hook
@@ -113,32 +112,31 @@ add this
 Type = Path
 Operation = Install
 Operation = Upgrade
+Target = usr/lib/modules/*/vmlinuz
+
+[Trigger]
+Type = Path
+Operation = Install
+Operation = Upgrade
 Operation = Remove
 Target = usr/lib/dracut/*
-Target = usr/lib/firmware/*
 Target = usr/src/*/dkms.conf
 Target = usr/lib/systemd/systemd
 Target = usr/bin/cryptsetup
 Target = usr/bin/lvm
 
 [Trigger]
-Type = Path
-Operation = Install
-Operation = Upgrade
-Target = usr/lib/modules/*/vmlinuz
-Target = usr/lib/modules/*/pkgbase
-
-[Trigger]
 Type = Package
 Operation = Install
 Operation = Upgrade
 Target = dracut
+Target = amd-ucode
+Target = intel-ucode
 
 [Action]
-Description = Rebuilding all UKIs via kernel-install...
+Description = Rebuilding UKIs via kernel-install...
 When = PostTransaction
-Exec = /usr/bin/bash -c "while read -r p; do V=$(basename $(dirname $p)); /usr/bin/kernel-install add $V /usr/lib/modules/$V/vmlinuz; done"
-NeedsTargets
+Exec = /usr/bin/bash -c "for v in /usr/lib/modules/*/vmlinuz; do V=$(basename $(dirname \"$v\")); /usr/bin/kernel-install add \"$V\" \"$v\"; done"
 ```
 ### 2.5. Cleanup and test
 remove mkinitcpio and its configuration files
