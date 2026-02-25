@@ -101,7 +101,8 @@ Target = usr/lib/modules/*/pkgbase
 Description = Removing UKI and kernel entries via kernel-install...
 When = PreTransaction
 Exec = /usr/bin/bash -c "while read -r p; do V=$(basename $(dirname \"$p\")); /usr/bin/kernel-install remove \"$V\"; done"
-NeedsTargets```
+NeedsTargets
+```
 and
 ```bash
 sudo micro /etc/pacman.d/hooks/90-kernel-install.hook
