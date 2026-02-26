@@ -97,6 +97,7 @@ When = PostTransaction
 Exec = /usr/bin/bash -c 'while read -r line; do /usr/bin/kernel-install add "$line" "/usr/lib/modules/$line/vmlinuz"; done < <(ls /usr/lib/modules | grep arch)'
 Depends = systemd-ukify
 Depends = dracut
+NeedsTargets
 ```
 ### 2.5. Cleanup and test
 remove mkinitcpio and its configuration files
