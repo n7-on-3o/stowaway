@@ -11,6 +11,10 @@ fi
 # kitty & co
 sudo pacman -S --needed kitty micro starship zsh fzf zoxide stow
 
+# a bit of fresh air
+sudo pacman -S --needed eza bat ripgrep fd duf dust btop tldr
+tldr --update
+
 # my favourite fonts
 sudo pacman -S --needed ttc-iosevka-aile ttc-iosevka-ss12
 

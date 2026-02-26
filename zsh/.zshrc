@@ -71,15 +71,27 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 export EDITOR='micro'
 
 # Aliases
-alias ls='ls --color'
-alias ll='ls -lh'
-alias la='ls -lah'
-
 alias vim='nvim'
 alias suv='sudo nvim'
 
 alias mi='micro'
 alias smi='sudo micro'
+
+# File Listing
+alias ls='eza --oneline'
+alias ll='eza -lghmMU --time-style=long-iso --git --git-repos'
+alias la='ll -a'
+alias tree='eza --tree'
+
+# File Viewing & Searching
+alias cat='bat'
+alias grep='rg'
+alias find='fd'
+
+# System Info
+alias df='duf'
+alias du='dust'
+alias top='btop'
 
 # Archy
 alias pacin='sudo pacman -S'
