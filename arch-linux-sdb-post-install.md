@@ -39,6 +39,16 @@ enable the cleanup timer
 ```bash
 sudo systemctl enable --now paccache.timer
 ```
+### 1.4. Check /efi permissions
+Ideally /efi should be mounted with fmask=0077,dmask=0077. If that's not the case run
+```bash
+sudo chmod 700 /efi
+```
+and edit the /efi entry in /etc/fstab so that fmask=0077,dmask=0077. Reboot and run
+```bash
+mount | grep /efi
+```
+to be sure
 ## 2. Dracut
 transition from mkinitcpio to dracut
 ### 2.1. Install dracut
