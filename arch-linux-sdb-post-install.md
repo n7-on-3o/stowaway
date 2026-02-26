@@ -2,7 +2,7 @@
 
 Install Arch with archinstall:
 
-1. Manual partition. 4 GiB /boot, rest btrfs with @, @home, @log, @cache
+1. Manual partition. 4 GiB /efi, rest btrfs with @, @home, @log, @cache
 2. LUKS encryption for root partition
 3. systemd-boot bootloader UKI enabled
 4. Minimal install (no DE or WM)
@@ -43,101 +43,60 @@ sudo systemctl enable --now paccache.timer
 transition from mkinitcpio to dracut
 ### 2.1. Install dracut
 ```bash
-sudo pacman -S dracut cpio
+sudo pacman -S dracut cpio systemd-ukify
 ```
 ### 2.2. Create dracut config
 ```
-sudo micro /etc/dracut.conf.d/10-luks.conf
+sudo micro /etc/dracut.conf.d/uki.conf
 ```
 add this content
 ```
-# UKI and Module Settings
-uefi="yes"
+add_dracutmodules+=" systemd crypt "
 hostonly="yes"
-uefi_stub="/usr/lib/systemd/boot/efi/linuxx64.efi.stub"
-uefi_splash_image="/usr/share/systemd/bootctl/splash-arch.bmp"
 compress="zstd"
-
-# Kernel Command Line
-kernel_cmdline+=" rd.luks.uuid=d2f6bb0d-f744-4f07-99f4-1d0f3a7f06c1 root=UUID=51a5006d-bd75-4e15-8ba7-56adba4fe872 rootfstype=btrfs rootflags=compress=zstd:3,subvol=@ rw splash quiet "
+early_microcode="yes"
+```
+### 2.3. add kernel-install config files
+run these
+```bash
+echo "layout=uki" | sudo tee /etc/kernel/install.conf
 ```
 ```bash
-lsblk -f #run this to find the uuids
+echo "rd.luks.uuid=$(lsblk -f | grep crypto_LUKS | awk '{print $4}') root=UUID=$(findmnt -no UUID /) rootfstype=btrfs rootflags=compress=zstd:3,subvol=@ rw splash quiet" | sudo tee /etc/kernel/cmdline
 ```
-if using nvidia-open-dkms
-```
-sudo micro /etc/dracut.conf.d/20-nvidia.conf
-```
-add this content
-```
-force_drivers+=" nvidia nvidia_modeset nvidia_uvm nvidia_drm "
-
-# Kernel Command Line
-kernel_cmdline+=" rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1 "
-```
-### 2.3. Create kernel-install config
-```
-sudo micro /etc/kernel/install.conf
-```
-add this content
-```
-layout=uki
-uki_generator=dracut
-initrd_generator=dracut
-```
-### 2.4. Add kernel-install hooks
-we need to replace two dracut (or mknintcpio) hooks with kernel-install ones
 ```bash
-sudo micro /etc/pacman.d/hooks/60-kernel-remove.hook
+echo "arch" | sudo tee /etc/kernel/entry-token
 ```
-add this
+```bash
+cat <<EOF | sudo tee /etc/kernel/uki.conf
+[UKI]
+Splash=/usr/share/systemd/bootctl/splash-arch.bmp
+EOF
 ```
-[Trigger]
-Type = Path
-Operation = Remove
-Target = usr/lib/modules/*/pkgbase
-
-[Action]
-Description = Removing UKI and kernel entries via kernel-install...
-When = PreTransaction
-Exec = /usr/bin/bash -c "while read -r p; do V=$(basename $(dirname \"$p\")); /usr/bin/kernel-install remove \"$V\"; done"
-NeedsTargets
-```
-and
+### 2.4. Add kernel-install hook
+we need to replace two dracut (or mknintcpio) hooks with kernel-install
 ```bash
 sudo micro /etc/pacman.d/hooks/90-kernel-install.hook
 ```
 add this
 ```
 [Trigger]
-Type = Path
-Operation = Install
-Operation = Upgrade
-Target = usr/lib/modules/*/vmlinuz
-
-[Trigger]
-Type = Path
-Operation = Install
-Operation = Upgrade
-Operation = Remove
-Target = usr/lib/dracut/*
-Target = usr/src/*/dkms.conf
-Target = usr/lib/systemd/systemd
-Target = usr/bin/cryptsetup
-Target = usr/bin/lvm
-
-[Trigger]
 Type = Package
 Operation = Install
 Operation = Upgrade
-Target = dracut
-Target = amd-ucode
-Target = intel-ucode
+Operation = Remove
+Target = linux
+Target = linux-lts
+Target = linux-zen
+Target = linux-hardened
 
 [Action]
-Description = Rebuilding UKIs via kernel-install...
+Description = Managing Unified Kernel Images via kernel-install...
 When = PostTransaction
-Exec = /usr/bin/bash -c "for v in /usr/lib/modules/*/vmlinuz; do V=$(basename $(dirname \"$v\")); /usr/bin/kernel-install add \"$V\" \"$v\"; done"
+# We use a shell loop to catch the actual kernel version string
+Exec = /usr/bin/bash -c 'while read -r line; do /usr/bin/kernel-install add "$line" "/usr/lib/modules/$line/vmlinuz"; done < <(ls /usr/lib/modules | grep arch)'
+Depends = systemd-ukify
+Depends = dracut
 ```
 ### 2.5. Cleanup and test
 remove mkinitcpio and its configuration files
