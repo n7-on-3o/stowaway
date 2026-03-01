@@ -39,7 +39,21 @@ enable the cleanup timer
 ```bash
 sudo systemctl enable --now paccache.timer
 ```
-### 1.4. Check /efi permissions
+### 1.4. Mirrorlist
+install reflector
+```bash
+sudo pacman -S reflector
+```
+edit reflector.conf
+```bash
+sudo micro /etc/xdg/reflector/reflector.conf
+```
+I usually leave the defaults, and change country to something like 'France,Germany,Netherlands'
+start the timer
+```bash
+sudo systemctl enable --now reflector.timer
+```
+### 1.5. Check /efi permissions
 Ideally /efi should be mounted with fmask=0077,dmask=0077. If that's not the case run
 ```bash
 sudo chmod 700 /efi
