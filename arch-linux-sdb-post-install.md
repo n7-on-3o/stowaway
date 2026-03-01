@@ -48,7 +48,10 @@ edit reflector.conf
 ```bash
 sudo micro /etc/xdg/reflector/reflector.conf
 ```
-I usually leave the defaults, and change country to something like 'France,Germany,Netherlands'
+I usually leave the defaults, and change country to something like
+```
+--country France,Germany,Netherlands
+```
 start the timer
 ```bash
 sudo systemctl enable --now reflector.timer
